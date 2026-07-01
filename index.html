@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Interview Prep for Hiring a Helper · HelperCoach</title>
+<meta name="description" content="A free tool to prepare for interviewing a domestic helper: get clear on your household's values and generate a tailored interview guide with questions that surface real answers." />
+<style>
+  :root{
+    --sage:#436B5F; --sage-strong:#2F4E44; --sage-light:#E7EDEA; --sage-soft:#F1F4F2;
+    --accent:#BE8A6B; --accent-text:#875338; --accent-light:#F3E9E1;
+    --bg:#F5F2EE; --surface:#FFFFFF; --sand:#EEE9E1;
+    --ink:#2A2724; --ink2:#6E6A61; --muted:#9B948A;
+    --border:#E7E0D7; --danger:#B14B43; --warn:#B0823F; --warn-light:#F3EADA;
+    --radius:18px; --radius-lg:24px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:660px;margin:0 auto;padding:28px 18px 72px;}
+  .eyebrow{font-size:12px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  h1{font-size:30px;line-height:1.15;letter-spacing:-.4px;font-weight:700;margin:.35em 0 .3em;}
+  h2{font-size:21px;line-height:1.2;font-weight:600;margin:0 0 .3em;}
+  h3{font-size:16px;font-weight:600;margin:0;}
+  p{margin:.5em 0;}
+  .lead{color:var(--ink2);font-size:16px;}
+  .muted{color:var(--muted);}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 18px;}
+  .note{background:var(--accent-light);border:1px solid var(--accent-light);border-radius:var(--radius);padding:16px 18px;margin:12px 0;}
+  .note h3{color:var(--accent-text);}
+  .note p{color:var(--ink);margin:.35em 0 0;font-size:15px;}
+  .soft{background:var(--sage-soft);border:1px solid var(--sage-light);border-radius:var(--radius);padding:16px 18px;}
+  .steps{display:flex;flex-direction:column;gap:14px;margin:18px 0;}
+  .steprow{display:flex;gap:14px;align-items:flex-start;}
+  .badge{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--sage-light);color:var(--sage-strong);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .steprow .t{font-weight:600;}
+  .steprow .d{color:var(--ink2);font-size:15px;}
+  .btn{appearance:none;border:none;cursor:pointer;font-family:inherit;font-size:16px;font-weight:600;border-radius:999px;padding:14px 22px;min-height:50px;width:100%;transition:opacity .15s, transform .05s;}
+  .btn:active{transform:scale(.99);}
+  .btn-primary{background:var(--sage);color:#fff;}
+  .btn-primary:disabled{opacity:.45;cursor:default;}
+  .btn-secondary{background:transparent;color:var(--sage);border:1.5px solid var(--sage);}
+  .btn-ghost{background:transparent;color:var(--ink2);min-height:44px;font-weight:500;}
+  .btnrow{display:flex;flex-direction:column;gap:10px;margin-top:18px;}
+  .progress{font-size:12px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:2px;}
+  .grid{display:flex;flex-direction:column;gap:10px;margin:16px 0;}
+  .vcard{text-align:left;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;cursor:pointer;display:flex;gap:12px;align-items:flex-start;transition:border-color .12s, background .12s;}
+  .vcard:hover{border-color:var(--sage-light);}
+  .vcard.sel{border-color:var(--sage);background:var(--sage-soft);}
+  .vcard.dis{opacity:.5;cursor:default;}
+  .check{flex:0 0 auto;width:24px;height:24px;border-radius:7px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin-top:2px;background:#fff;font-size:14px;color:#fff;}
+  .vcard.sel .check{background:var(--sage);border-color:var(--sage);}
+  .vname{font-weight:600;}
+  .vdef{color:var(--ink2);font-size:14px;margin-top:2px;}
+  .vex{color:var(--muted);font-size:13px;font-style:italic;margin-top:6px;}
+  .hint{position:sticky;bottom:0;background:linear-gradient(to top, var(--bg) 70%, transparent);padding-top:10px;}
+  .hint .pillcount{font-size:13px;color:var(--ink2);text-align:center;margin-bottom:8px;font-weight:500;}
+  .selfcard{margin:12px 0;}
+  .selfcard h3{margin-bottom:4px;}
+  .selfcard p{color:var(--ink2);font-size:15px;margin:0;}
+  .field{margin:14px 0;}
+  .field label{display:block;font-size:12px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px;}
+  .field input{width:100%;border:1px solid var(--border);border-radius:12px;background:#fff;padding:13px 15px;font-size:16px;font-family:inherit;color:var(--ink);min-height:50px;}
+  .field input:focus{outline:none;border-color:var(--sage);}
+  .privacy{font-size:13px;color:var(--muted);margin-top:6px;}
+  .err{color:var(--danger);font-size:14px;margin-top:8px;}
+  /* Guide */
+  .summary{background:var(--sage);color:#fff;border-radius:var(--radius-lg);padding:18px 20px;margin:16px 0;}
+  .summary h2{color:#fff;}
+  .summary .grp{margin-top:10px;}
+  .summary .glabel{font-size:12px;letter-spacing:.8px;text-transform:uppercase;opacity:.8;font-weight:600;}
+  .summary ul{margin:4px 0 0;padding-left:18px;}
+  .summary li{margin:2px 0;}
+  .biascard{background:var(--warn-light);border:1px solid var(--warn-light);border-radius:var(--radius);padding:16px 18px;margin:14px 0;}
+  .biascard h3{color:var(--warn);}
+  .biascard p{color:var(--ink);font-size:15px;margin:.3em 0 0;}
+  .gsection{margin:22px 0;}
+  .gsection h2{border-bottom:1px solid var(--border);padding-bottom:8px;}
+  .q{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin:10px 0;}
+  .qtag{font-size:11px;letter-spacing:.7px;text-transform:uppercase;color:var(--sage-strong);font-weight:700;margin-bottom:4px;}
+  .qtext{font-size:16px;}
+  .qnote{font-size:13px;color:var(--accent-text);background:var(--accent-light);border-radius:10px;padding:8px 10px;margin-top:8px;}
+  .obs{background:var(--sand);border-radius:14px;padding:12px 16px;margin:10px 0;font-style:italic;color:var(--ink2);}
+  .sectionintro{background:var(--sage-soft);border:1px solid var(--sage-light);border-radius:14px;padding:12px 16px;margin:8px 0;color:var(--ink);font-size:15px;}
+  .refcard{background:var(--sage-soft);border:1px solid var(--sage-light);border-radius:var(--radius);padding:16px 18px;margin:18px 0;}
+  .cta{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin:22px 0;text-align:center;}
+  .cta h2{margin-bottom:6px;}
+  .cta p{color:var(--ink2);margin:0 0 14px;}
+  .cta a.btn{display:inline-block;width:auto;text-decoration:none;text-align:center;}
+  .hidden{display:none !important;}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 4px;}
+  .toolbar .btn{width:auto;}
+  a.footer-link{color:var(--sage);}
+  @media print{
+    body{background:#fff;}
+    .wrap{max-width:none;padding:0;}
+    .no-print,.hint,.toolbar,.cta{display:none !important;}
+    .summary{background:#fff;color:var(--ink);border:2px solid var(--sage);}
+    .summary h2,.summary .glabel{color:var(--ink);}
+    .q,.card,.note,.soft{break-inside:avoid;}
+    .gsection{break-inside:avoid-page;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- INTRO -->
+  <section id="s-intro">
+    <div class="eyebrow">Free · No account needed · By HelperCoach</div>
+    <h1>Prepare to find a good fit.</h1>
+    <p class="lead">Before you meet candidates, this tool helps you get clear on two things: what your household actually needs, and how to ask questions that surface real answers, not rehearsed ones.</p>
+
+    <div class="note">
+      <h3>A note on cross-cultural interviews</h3>
+      <p>Many helpers from the Philippines, Indonesia, and Myanmar are practised in reading what an employer wants to hear. That's a skill, not dishonesty. The questions in this guide are designed to be harder to game: they ask for stories, decisions, and reactions, not opinions about what good looks like.</p>
+    </div>
+    <div class="note">
+      <h3>"Yes" does not always mean yes</h3>
+      <p>In many cultures, "yes" means "I hear you", not "I can do that" or "I agree." It is a sign of respect and attention, not confirmation. If you ask "Can you cook Western food?" and hear "yes," follow up with "Walk me through the last Western meal you cooked." The story tells you what the yes actually meant.</p>
+    </div>
+
+    <div class="steps">
+      <div class="steprow"><div class="badge">1</div><div><div class="t">Values audit</div><div class="d">Pick the values that define your household and the working relationship you want. Takes two minutes.</div></div></div>
+      <div class="steprow"><div class="badge">2</div><div><div class="t">A moment for you</div><div class="d">Three questions about yourself as an employer before the guide opens.</div></div></div>
+      <div class="steprow"><div class="badge">3</div><div><div class="t">Your personalised interview guide</div><div class="d">Behavioral questions based on your selections, ready to print and take into the interview.</div></div></div>
+    </div>
+
+    <div class="btnrow"><button class="btn btn-primary" onclick="go('family')">Start &mdash; it's free</button></div>
+  </section>
+
+  <!-- FAMILY VALUES -->
+  <section id="s-family" class="hidden">
+    <div class="progress">Step 1 of 3</div>
+    <h1>What defines your household?</h1>
+    <p class="lead">Pick the <b>3 to 5</b> values that matter most in your home. Be honest, not aspirational. These shape the questions your candidate needs to answer.</p>
+    <div class="grid" id="grid-family"></div>
+    <div class="hint">
+      <div class="pillcount" id="count-family"></div>
+      <div class="btnrow" style="margin-top:0">
+        <button class="btn btn-primary" id="next-family" onclick="go('relationship')" disabled>Continue</button>
+        <button class="btn btn-ghost" onclick="go('intro')">Back</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATIONSHIP VALUES -->
+  <section id="s-relationship" class="hidden">
+    <div class="progress">Step 2 of 3</div>
+    <h1>How do you want to work together?</h1>
+    <p class="lead">Now pick the <b>3 to 5</b> values that matter most in the working relationship with your helper.</p>
+    <div class="grid" id="grid-relationship"></div>
+    <div class="hint">
+      <div class="pillcount" id="count-relationship"></div>
+      <div class="btnrow" style="margin-top:0">
+        <button class="btn btn-primary" id="next-relationship" onclick="go('selfcheck')" disabled>Continue</button>
+        <button class="btn btn-ghost" onclick="go('family')">Back</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELF CHECK -->
+  <section id="s-selfcheck" class="hidden">
+    <div class="progress">A moment for you</div>
+    <h1>Before you interview anyone</h1>
+    <p class="lead">Most household friction starts not with the helper, but with what was never said. Sit with these three questions first.</p>
+    <div id="selfcheck-list"></div>
+    <div class="btnrow">
+      <button class="btn btn-primary" onclick="go('gate')">See my interview guide</button>
+      <button class="btn btn-ghost" onclick="go('relationship')">Back</button>
+    </div>
+  </section>
+
+  <!-- EMAIL GATE -->
+  <section id="s-gate" class="hidden">
+    <h1>Your guide is ready</h1>
+    <p class="lead">Enter your name and email and we'll open your personalised interview guide. We'll also send you a copy so you have it on the day.</p>
+    <div class="card">
+      <div class="field"><label for="lead-name">Your name</label><input id="lead-name" type="text" autocomplete="name" placeholder="First name" /></div>
+      <div class="field"><label for="lead-email">Email</label><input id="lead-email" type="email" autocomplete="email" placeholder="you@example.com" /></div>
+      <div class="err hidden" id="gate-err"></div>
+      <div class="btnrow" style="margin-top:6px">
+        <button class="btn btn-primary" id="gate-submit" onclick="submitLead()">Open my guide</button>
+      </div>
+      <p class="privacy">We use your email only to send your guide and occasional helper-hiring tips from HelperCoach. No spam, unsubscribe anytime.</p>
+    </div>
+    <div class="btnrow"><button class="btn btn-ghost" onclick="go('selfcheck')">Back</button></div>
+  </section>
+
+  <!-- GUIDE -->
+  <section id="s-guide" class="hidden">
+    <div class="toolbar no-print">
+      <button class="btn btn-secondary" onclick="window.print()">Print / Save as PDF</button>
+      <button class="btn btn-ghost" onclick="restart()">Start over</button>
+    </div>
+    <h1>Your interview guide</h1>
+    <p class="lead no-print">Work through the sections in order &mdash; they build rapport before going specific. Print this and take it into the interview.</p>
+
+    <div class="summary" id="summary"></div>
+
+    <div class="biascard">
+      <h3>Watch for affinity bias</h3>
+      <p>We tend to feel comfortable with people who remind us of ourselves. That feeling is not the same as fit. After each section, ask: am I evaluating this person against my values, or against my gut reaction to them?</p>
+    </div>
+
+    <div id="guide-body"></div>
+
+    <div class="refcard">
+      <h3>After the interview: make the call</h3>
+      <p style="margin:.3em 0 0;color:var(--ink2)">Ask the previous employer: "Would you hire them again, and why?" You already know what this candidate expects them to say. See if it matches.</p>
+    </div>
+
+    <div class="cta no-print">
+      <h2>Want a second pair of eyes?</h2>
+      <p>HelperCoach helps families set their helper up for success, from the interview to the first 90 days.</p>
+      <a class="btn btn-primary" href="https://www.helpercoach.com/contact-us/" target="_blank" rel="noopener">Book a free consult</a>
+    </div>
+  </section>
+
+  <p class="muted no-print" style="text-align:center;font-size:13px;margin-top:30px">Not legal advice. In Singapore, a helper is entitled to a weekly rest day and at least one rest day a month that cannot be compensated away (MOM rules). &copy; Culture &amp; Consciousness SG · <a class="footer-link" href="https://www.helpercoach.com/" target="_blank" rel="noopener">helpercoach.com</a></p>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — where captured leads are sent.
+   Create a free form endpoint (e.g. https://formspree.io) and
+   paste its URL below. Until you do, the tool still works and
+   opens the guide; it just won't record the lead.
+   ============================================================ */
+var LEAD_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
+/* ---- Content (extracted from the Helper Clarity app) ---- */
+var FAMILY_VALUES = [
+  {id:'active_outdoor',name:'Active and Outdoor Living',def:'We prioritise physical activity and outdoor time for the whole family.',ex:'The children go to the playground every afternoon, rain or shine, and we prefer outdoor play over screen time.'},
+  {id:'calm_quiet',name:'Calm and Quiet at Home',def:'We value a peaceful, low-noise atmosphere at home.',ex:'Mornings before school are kept calm with no TV or loud music, and we speak gently rather than shouting across rooms.'},
+  {id:'cleanliness_order',name:'Cleanliness and Order',def:'A tidy, well-organised home is important to us. We expect shared spaces to be kept clean throughout the day, not just at the end.',ex:'The kitchen is wiped down after every meal, and toys are put away before bedtime.'},
+  {id:'cultural_traditions',name:'Cultural Traditions',def:'We observe certain cultural customs, holidays, or practices that are meaningful to our family. We appreciate when our helper understands or respects these.',ex:'We celebrate Lunar New Year with specific traditions, or we observe Diwali.'},
+  {id:'education_learning',name:'Education and Learning',def:'We encourage curiosity and learning at home, not just at school. This includes reading, homework support, and educational play.',ex:'The children read for 20 minutes every evening before bed.'},
+  {id:'faith_spiritual',name:'Faith and Spiritual Practice',def:'Our faith or spiritual beliefs play a role in our daily life. We may observe certain prayers, dietary rules, or religious traditions.',ex:'We say grace before meals, or we do not eat pork.'},
+  {id:'healthy_eating',name:'Healthy Eating',def:'We pay close attention to what our family eats. This might include cooking from scratch, limiting sugar, or following a specific diet.',ex:'We avoid processed snacks and prefer fresh fruit for the kids.'},
+  {id:'hospitality_guests',name:'Hospitality and Guests',def:'We regularly host family or friends, and we value a welcoming home. This may mean keeping the home guest-ready or helping with entertaining.',ex:'We host dinner with friends most Saturdays and appreciate help with preparation when it falls on a working day.'},
+  {id:'independence_children',name:'Independence for Children',def:'We encourage our children to do things for themselves where age-appropriate. This includes dressing, tidying their own room, or helping with small tasks.',ex:'Our five-year-old is expected to put on his own shoes and carry his school bag.'},
+  {id:'pets_family',name:'Pets as Family',def:'Our pets are important members of the family. We expect them to be cared for with attention and kindness.',ex:'The dog needs a daily walk and is not allowed on the sofa.'},
+  {id:'privacy',name:'Privacy',def:'We value personal space within the home, for everyone who lives here.',ex:'Our bedroom is a private space, we knock before entering any closed door, and private conversations and belongings stay private. The same applies to your room and your things.'},
+  {id:'quality_time',name:'Quality Time as a Family',def:'We value uninterrupted time together as a family, especially during meals or weekends.',ex:'We keep devices away during dinner and spend Sunday mornings doing activities together.'},
+  {id:'environment',name:'Respect for the Environment',def:'We try to live sustainably and reduce waste where we can. This includes recycling, saving water, and being mindful of consumption.',ex:'We separate waste into recycling, compost, and general rubbish.'},
+  {id:'routine_structure',name:'Routine and Structure',def:'We like our days to follow a predictable rhythm. Meals, naps, school runs, and bedtimes happen at consistent times.',ex:'Dinner is always at 6:30 pm and the children are in bed by 8 pm.'},
+  {id:'safety_first',name:'Safety First',def:'The physical safety of everyone in the household, especially children, is a top priority. We follow specific safety rules and expect them to be taken seriously.',ex:'The gate at the stairs must always be closed when the toddler is awake.'}
+];
+var RELATIONSHIP_VALUES = [
+  {id:'appreciation',name:'Appreciation',def:'We make it a point to notice and acknowledge good work. We believe that saying thank you matters and that effort should be recognised.',ex:'When you handle a difficult day well or go the extra mile, we will tell you.'},
+  {id:'boundaries',name:'Boundaries and Personal Space',def:'We respect that our helper has a private life and needs personal time and space. Off-duty hours are genuinely off-duty.',ex:'We will not ask for help during your rest time unless it is a genuine emergency.'},
+  {id:'confidentiality',name:'Confidentiality',def:'What happens in our home stays in our home. We expect discretion about family matters, and we will respect your privacy in the same way.',ex:'Conversations between us or personal details about the family should not be shared with others.'},
+  {id:'fairness',name:'Fairness',def:'We are committed to fair working conditions, including pay, rest days, workload, and clear agreements. If something feels unfair, we want to hear about it.',ex:'Overtime is always compensated. You get a weekly rest day, and at least one rest day a month is yours no matter what, as MOM requires.'},
+  {id:'feedback_growth',name:'Feedback and Growth',def:'We both want to keep getting better at working together. We will share feedback kindly, take yours seriously, and treat mistakes as something to learn from rather than punish.',ex:'During our weekly check-in, we talk about the past week and adjust if needed.'},
+  {id:'flexibility',name:'Flexibility',def:'Life with a family can be unpredictable. We appreciate willingness to adapt when plans change, and we will do the same for you.',ex:'If plans change, we will discuss it in advance. Any change to a rest day needs your agreement and is always properly compensated, in line with MOM rules.'},
+  {id:'honesty',name:'Honesty',def:'We value truthfulness, even when it is uncomfortable. If something breaks, goes wrong, or is forgotten, we would rather hear the truth than find out later.',ex:'If a glass breaks, just tell us. Accidents happen.'},
+  {id:'initiative',name:'Initiative',def:'We appreciate it when our helper notices what needs to be done without always being asked. Over time, we hope you will feel confident taking ownership of your responsibilities.',ex:'If the laundry basket is full, starting a load without being told.'},
+  {id:'kindness',name:'Kindness',def:'We want our home to feel warm and welcoming for everyone, including our helper. Small gestures of consideration matter.',ex:'We include you in meals, check in on how you are doing, and remember that you are far from your own family.'},
+  {id:'mutual_respect',name:'Mutual Respect',def:'We see our helper as a professional and a valued person in our household, and we expect the same respect in return.',ex:'We will always speak to you politely, and we expect the same tone with our children.'},
+  {id:'open_communication',name:'Open Communication',def:'We want problems raised early, from either side. If something is unclear or not working, we would rather hear about it this week than discover it next month.',ex:'If you are unsure about a task, please ask rather than guess.'},
+  {id:'patience',name:'Patience',def:'Living and working closely together requires patience on both sides. We understand that adjusting to a new household takes time.',ex:'We will not expect everything to be perfect in the first week, and we ask for the same patience as you get to know our family.'},
+  {id:'reliability',name:'Reliability',def:'We depend on our helper to be consistent. Showing up on time, completing agreed tasks, and following through on commitments matters to us.',ex:'If school pick-up is at 1:30 pm, being there on time is essential.'},
+  {id:'teamwork',name:'Teamwork',def:'We see running the household as a shared effort. We do not expect our helper to do everything alone, and we contribute too.',ex:'We clear our own plates after meals, and on busy mornings we pitch in with getting the kids ready.'},
+  {id:'trust',name:'Trust',def:'We want a relationship where both sides can give each other independence and the benefit of the doubt. Over time, trust means less checking and more autonomy.',ex:'Once you know our routines, we want you to run your day your way. And if something seems off, we will ask before assuming the worst.'}
+];
+var VALUE_QUESTIONS = {
+  active_outdoor:"Imagine it's a rainy Tuesday and the children have been indoors all day getting restless. Walk me through what you would do.",
+  calm_quiet:"Households differ a lot in noise and energy. Tell me about the calmest household you have worked in. What did you do to keep it that way, and how did it suit you?",
+  cleanliness_order:"You finish cooking lunch and have 15 minutes before the next task. Walk me through exactly what you do in the kitchen in that time.",
+  cultural_traditions:"Tell me about a custom or practice in a household you worked in that was unfamiliar to you. How did you approach it?",
+  education_learning:"A child is stuck on a homework problem and getting frustrated, and you don't know the answer either. What do you do?",
+  faith_spiritual:"Our daily routine includes some religious practices, for example prayer times and food rules. Walk me through how you would plan meals and the daily schedule around rules like these.",
+  healthy_eating:"If I told you we cook from scratch, avoid processed food, and the children can be picky, walk me through how you'd plan a week of lunches with what's in the kitchen.",
+  hospitality_guests:"Tell me about the last time you helped prepare for guests. What did the day involve, and what was your role from start to finish?",
+  independence_children:"Our five-year-old can put on their own shoes but often refuses when we're running late for school. What do you do?",
+  pets_family:"Tell me about an animal you've cared for. What was the daily routine and what did you find most challenging?",
+  privacy:"You're carrying laundry past the master bedroom and the door is slightly open. You can hear the family having what sounds like a private conversation. What do you do?",
+  quality_time:"It's 6:30pm on a weekday. The family has just sat down for dinner together. Where are you and what are you doing?",
+  environment:"In our home we separate recycling and try not to waste water, electricity, or food. Have you worked in a household that did something similar? What did it involve day to day?",
+  routine_structure:"Tell me about a week in a previous role when the normal schedule completely fell apart, a family emergency, illness, or unexpected visitors. How did you manage?",
+  safety_first:"Walk me through your safety habits with young children, the things you do automatically, without needing to be reminded.",
+  appreciation:"Tell me about a time you felt genuinely valued in a role. What happened, and what did it change for you?",
+  boundaries:"It's 8:30pm. Your rest time started at 7pm. The family asks if you can quickly help with something. What's your first thought, and what do you actually do?",
+  confidentiality:"Your friend asks how the family you work for is doing. What do you tell them?",
+  fairness:"Tell me about a work situation that felt unfair to you. What was it, and what did you do about it?",
+  feedback_growth:"If I notice you've folded the laundry differently from how we prefer it, how would you want me to bring that up with you?",
+  flexibility:"It's your rest day and the family has an emergency. They ask if you can work today and take a different day off this week. What's your first reaction and what do you say?",
+  honesty:"You accidentally broke something valuable in the house. The family hasn't noticed yet. Walk me through exactly what you do.",
+  initiative:"You have two hours, the fridge is nearly empty, the laundry basket is full, and the bathroom needs cleaning. You can only properly finish one. Walk me through your decision.",
+  kindness:"What would make you feel like you genuinely belonged in a household, not just worked there?",
+  mutual_respect:"Describe the best employer you have had. What made them good to work for?",
+  open_communication:"You've been asked to do something in a way that doesn't seem to be working. You've tried it twice and it still isn't right. What do you do?",
+  patience:"What's the hardest part of the first month in a new household? What helps you get through it?",
+  reliability:"Tell me about a time you made a commitment you couldn't keep. What happened and what did you do?",
+  teamwork:"If I'm working from home in my room and you're managing the household, how do you prefer to coordinate during the day? Do you check in, work independently, something else?",
+  trust:"After three months with a new family, what would have to be true for you to feel you could be completely honest with them, even about something uncomfortable?"
+};
+var VALUE_NOTES = {
+  boundaries:"A strong answer names the trade-off or negotiates honestly. Instant agreement may just mean the candidate did not feel safe saying no.",
+  flexibility:"Listen for honest negotiation, not instant compliance. Remember: rest day changes always require agreement and compensation under MOM rules, and one rest day a month cannot be traded away.",
+  faith_spiritual:"Fit here means respecting your household's practices. It does not require the candidate to share your beliefs, and her own religion is not relevant to this interview."
+};
+var OPENING = [
+  "Walk me through your last role, what a typical day looked like from when you started to when you finished.",
+  "What's something you got noticeably better at over the course of that role?",
+  "Tell me about a time something went wrong in that role. What happened and how did you handle it?"
+];
+var FIRST_MONTH = [
+  "In your first week with us, what would help you feel ready to do your best work?",
+  "How do you prefer to learn a new household, being shown things in person, a written guide, or trial and error?",
+  "If after two weeks something wasn't working for you, how would you bring that up with us?",
+  "We sit down at the two-week mark to talk about how things are going from both sides. How does that sound?"
+];
+var FOR_US = [
+  "Is there anything about this role or our household you'd want to know before deciding if it's right for you?",
+  "What would make this role not work for you? Be honest, it helps us both.",
+  "What does a good employer look like to you?"
+];
+var CLOSING = [
+  "What brought you to start looking for a new role?",
+  "Are there any tasks you're not comfortable doing? Please be specific.",
+  "What would make the first month feel like a success for you?",
+  "If we hire you, we will invest in training you on how we do things and have regular feedback conversations, not just when something goes wrong. How does that sound to you?",
+  "As part of our process, we'd like to speak with a previous employer. What do you think they would say about you?",
+  "And if they had one concern about you, what might that be?"
+];
+var SELF_CHECK = [
+  {t:'Do I communicate expectations clearly?',b:'Or do I assume a good helper will figure it out? Most household friction starts here, not with the helper, but with what was never said.'},
+  {t:'Am I prepared to give feedback consistently?',b:'Not only when something goes wrong. Helpers who know where they stand perform better and stay longer.'},
+  {t:'Can I describe what success looks like after 3 months?',b:"If you can't say it clearly, you'll be evaluating candidates on gut feel rather than evidence. Write it down before the interview."}
+];
+
+var MIN=3, MAX=5;
+var state = { family:[], relationship:[], leadDone:false };
+
+/* ---- Navigation ---- */
+var SCREENS=['intro','family','relationship','selfcheck','gate','guide'];
+function go(name){
+  SCREENS.forEach(function(s){ document.getElementById('s-'+s).classList.toggle('hidden', s!==name); });
+  window.scrollTo(0,0);
+  if(name==='guide') renderGuide();
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ---- Value pickers ---- */
+function renderGrid(kind){
+  var data = kind==='family'?FAMILY_VALUES:RELATIONSHIP_VALUES;
+  var sel = state[kind];
+  var host = document.getElementById('grid-'+kind);
+  host.innerHTML='';
+  data.forEach(function(v){
+    var isSel = sel.indexOf(v.id)>=0;
+    var dis = !isSel && sel.length>=MAX;
+    var el = document.createElement('button');
+    el.className='vcard'+(isSel?' sel':'')+(dis?' dis':'');
+    el.type='button';
+    el.setAttribute('aria-pressed', isSel?'true':'false');
+    el.innerHTML='<span class="check">'+(isSel?'&#10003;':'')+'</span>'+
+      '<span><span class="vname">'+esc(v.name)+'</span>'+
+      '<span class="vdef">'+esc(v.def)+'</span>'+
+      '<span class="vex">e.g. '+esc(v.ex)+'</span></span>';
+    el.onclick=function(){ toggle(kind, v.id); };
+    host.appendChild(el);
+  });
+  var count = sel.length;
+  var msg = count<MIN ? ('Pick '+(MIN-count)+' more to continue')
+          : count>=MAX ? (MAX+' selected · deselect one to swap')
+          : (count+' selected · ready to continue');
+  document.getElementById('count-'+kind).textContent = msg;
+  document.getElementById('next-'+kind).disabled = count<MIN;
+}
+function toggle(kind, id){
+  var sel = state[kind];
+  var i = sel.indexOf(id);
+  if(i>=0){ sel.splice(i,1); }
+  else if(sel.length<MAX){ sel.push(id); }
+  renderGrid(kind);
+}
+
+/* ---- Self check ---- */
+(function(){
+  var host=document.getElementById('selfcheck-list');
+  SELF_CHECK.forEach(function(c){
+    var d=document.createElement('div');
+    d.className='card selfcard';
+    d.innerHTML='<h3>'+esc(c.t)+'</h3><p>'+esc(c.b)+'</p>';
+    host.appendChild(d);
+  });
+})();
+
+/* ---- Lead gate ---- */
+function submitLead(){
+  var name=document.getElementById('lead-name').value.trim();
+  var email=document.getElementById('lead-email').value.trim();
+  var err=document.getElementById('gate-err');
+  if(!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+    err.textContent='Please enter your name and a valid email.';
+    err.classList.remove('hidden');
+    return;
+  }
+  err.classList.add('hidden');
+  var btn=document.getElementById('gate-submit');
+  btn.disabled=true; btn.textContent='Opening…';
+  var famNames=state.family.map(nameOf).join(', ');
+  var relNames=state.relationship.map(nameOf).join(', ');
+  var payload={ name:name, email:email, source:'HelperCoach interview tool',
+    family_values:famNames, relationship_values:relNames };
+  // Best-effort lead capture; never block the user if it fails or is unset.
+  if(LEAD_ENDPOINT && LEAD_ENDPOINT.indexOf('YOUR_FORM_ID')<0){
+    fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
+  }
+  state.leadDone=true;
+  go('guide');
+}
+function nameOf(id){
+  var all=FAMILY_VALUES.concat(RELATIONSHIP_VALUES);
+  for(var i=0;i<all.length;i++){ if(all[i].id===id) return all[i].name; }
+  return id;
+}
+
+/* ---- Guide ---- */
+function qCard(text, tag, note){
+  return '<div class="q">'+(tag?'<div class="qtag">'+esc(tag)+'</div>':'')+
+    '<div class="qtext">'+esc(text)+'</div>'+
+    (note?'<div class="qnote">'+esc(note)+'</div>':'')+'</div>';
+}
+function renderGuide(){
+  // Summary of chosen values
+  var fam=state.family.map(function(id){return '<li>'+esc(nameOf(id))+'</li>';}).join('');
+  var rel=state.relationship.map(function(id){return '<li>'+esc(nameOf(id))+'</li>';}).join('');
+  document.getElementById('summary').innerHTML=
+    '<h2>What matters in our home</h2>'+
+    '<div class="grp"><div class="glabel">Our household</div><ul>'+fam+'</ul></div>'+
+    '<div class="grp"><div class="glabel">How we work together</div><ul>'+rel+'</ul></div>';
+
+  var famQs=state.family.map(function(id){ return qCard(VALUE_QUESTIONS[id]||'', nameOf(id), VALUE_NOTES[id]); }).join('');
+  var relQs=state.relationship.map(function(id){ return qCard(VALUE_QUESTIONS[id]||'', nameOf(id), VALUE_NOTES[id]); }).join('');
+
+  var html='';
+  html+=section('About their experience', OPENING.map(function(t){return qCard(t);}).join(''),
+    'Pause before moving on. What surprised you? What confirmed your first impression?');
+  html+=section('About your household', famQs, null);
+  html+=section('How you would work together', relQs,
+    'Check yourself: are you evaluating this person against your values, or against how comfortable they make you feel? Affinity is not fit.');
+  html+=section('Expectations for the first month', FIRST_MONTH.map(function(t){return qCard(t);}).join(''), null);
+  html+=section('Questions for us',
+    '<div class="sectionintro">This is where you listen. Give them genuine space, don\'t fill the silence. Candidates who ask good questions about your household usually make better long-term employees. The ones who ask nothing may be too anxious to show curiosity, or too guarded to reveal what they actually need.</div>'+
+    FOR_US.map(function(t){return qCard(t);}).join(''), null);
+  html+=section('Wrapping up', CLOSING.map(function(t){return qCard(t);}).join(''), null);
+  document.getElementById('guide-body').innerHTML=html;
+}
+function section(title, inner, obs){
+  return '<div class="gsection"><h2>'+esc(title)+'</h2>'+inner+
+    (obs?'<div class="obs">'+esc(obs)+'</div>':'')+'</div>';
+}
+
+function restart(){ state.family=[]; state.relationship=[]; state.leadDone=false;
+  renderGrid('family'); renderGrid('relationship');
+  document.getElementById('lead-name').value=''; document.getElementById('lead-email').value='';
+  var b=document.getElementById('gate-submit'); b.disabled=false; b.textContent='Open my guide';
+  go('intro'); }
+
+/* init */
+renderGrid('family'); renderGrid('relationship');
+</script>
+</body>
+</html>
